@@ -58,3 +58,14 @@ public key
 
 private key 
 fe63d4ab470d3a90d1e9d7154a320402f00a2720
+
+# Scheduler
+
+Ejecuta de manera diaria la sincronización con el api de marvel y guarda y actualiza los registros en BD
+
+# Services
+
+Servicios de consulta de la información almacenada en la BD despues de la sincronización
+- Se puede accecer mediante /swagger-ui.html para validar los servicios
+ 
+
