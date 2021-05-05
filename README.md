@@ -4,7 +4,7 @@ test using marvel api
 
 # Script Data Base MySQL
 
-CREATE TABLE `sys`.`marvel_character` (
+- CREATE TABLE `sys`.`marvel_character` (
   `id_marvel_character` BIGINT(100) NOT NULL,
   `name` VARCHAR(100) NULL,
   `resource_uri` VARCHAR(250) NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `sys`.`marvel_character` (
   PRIMARY KEY (`id_marvel_character`));
 
 
-CREATE TABLE `sys`.`comic` (
+- CREATE TABLE `sys`.`comic` (
   `id_comic` BIGINT(100) NOT NULL,
   `name` VARCHAR(250) NULL,
   `resource_uri` VARCHAR(250) NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `sys`.`comic` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `sys`.`creator` (
+- CREATE TABLE `sys`.`creator` (
   `id_creator` BIGINT(100) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `rol` VARCHAR(45) NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `sys`.`creator` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `sys`.`co_worker` (
+- CREATE TABLE `sys`.`co_worker` (
   `id_co_worker` BIGINT(100) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `id_comic` BIGINT(100) NULL,
@@ -50,6 +50,14 @@ CREATE TABLE `sys`.`co_worker` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+# Parameters in application.properties
+
+Ambos proyectos usan las configuración de una BD MySQL en localhost, en caso de requerir cambiarse se deben actualizar dichos archivos con los parámetros de conexión adecuados
+
+- spring.jpa.hibernate.ddl-auto=update
+- spring.datasource.url=jdbc:mysql://localhost:3306/sys
+- spring.datasource.username=user1
+- spring.datasource.password=password
 
 # Credentials Marvel API
 
