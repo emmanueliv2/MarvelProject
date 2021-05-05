@@ -1,5 +1,7 @@
 package mx.albo.test.marvelschedulerlibrary.service;
 
+import mx.albo.test.marvelschedulerlibrary.dao.CoWorkerRepository;
+import mx.albo.test.marvelschedulerlibrary.dao.CreatorRepository;
 import mx.albo.test.marvelschedulerlibrary.dao.MarvelCharacterRepository;
 import mx.albo.test.marvelschedulerlibrary.mapping.MarvelMappingService;
 import mx.albo.test.marvelschedulerlibrary.model.CoWorker;
@@ -30,8 +32,8 @@ public class LibraryServiceImp implements LibrarySevice {
 	@Value("${api.key.private}")
 	private String apiKeyPrivate;
 
-	private String parameters;
-	private String uri;
+	@Value("${api.marvel.url}")
+	private String url;
 
 	@Autowired
 	private MarvelMappingService mappingService;
@@ -39,7 +41,14 @@ public class LibraryServiceImp implements LibrarySevice {
 	@Autowired
 	private MarvelCharacterRepository marvelCharacterRepository;
 
-	public static final String url = "https://gateway.marvel.com:443/v1/public/";
+	@Autowired
+	private CreatorRepository creatorRepository;
+
+	@Autowired
+	private CoWorkerRepository coWorkerRepository;
+
+	private String parameters;
+	private String uri;
 	private static final Logger log = LoggerFactory.getLogger(LibraryServiceImp.class);
 
 	@Override
@@ -58,8 +67,9 @@ public class LibraryServiceImp implements LibrarySevice {
 		if (jsonObject != null) {
 			try {
 				jsonObject = jsonObject.getJSONObject("data");
-
 				JSONArray jsonArray = jsonObject.getJSONArray("results");
+				creatorRepository.deleteAll();
+				coWorkerRepository.deleteAll();
 				for(int i = 0; i < jsonArray.length(); i++) {
 					marvelCharacter = new MarvelCharacter();
 					JSONObject jsAux = jsonArray.getJSONObject(i);

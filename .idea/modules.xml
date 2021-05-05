@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MarvelProject.iml" filepath="$PROJECT_DIR$/.idea/MarvelProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/marvel-library-service/marvel-library-service.iml" filepath="$PROJECT_DIR$/marvel-library-service/marvel-library-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/marvel-scheduler-library/marvel-scheduler-library.iml" filepath="$PROJECT_DIR$/marvel-scheduler-library/marvel-scheduler-library.iml" />
     </modules>
   </component>
 </project>

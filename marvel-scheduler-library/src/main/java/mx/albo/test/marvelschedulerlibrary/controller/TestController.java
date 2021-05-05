@@ -1,6 +1,5 @@
 package mx.albo.test.marvelschedulerlibrary.controller;
 
-import mx.albo.test.marvelschedulerlibrary.model.MarvelCharacter;
 import mx.albo.test.marvelschedulerlibrary.service.LibrarySevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ public class TestController {
 	@Autowired
 	private LibrarySevice librarySevice;
 	
-	@RequestMapping (value = "/test/albo/characters", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+	@RequestMapping (value = "/test/albo/update", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
 	public ResponseEntity<?> test(){
 		String result = librarySevice.updateLibrary(new Date());
 		return new ResponseEntity<String>(result, null, HttpStatus.OK);
