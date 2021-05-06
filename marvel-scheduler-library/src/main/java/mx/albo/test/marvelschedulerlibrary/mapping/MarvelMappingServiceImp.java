@@ -1,5 +1,6 @@
 package mx.albo.test.marvelschedulerlibrary.mapping;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.json.JSONException;
@@ -16,7 +17,8 @@ public class MarvelMappingServiceImp implements MarvelMappingService{
     private static final Logger log = LoggerFactory.getLogger(MarvelMappingServiceImp.class);
 
     @Override
-    @Retry(name = "marvel-api", fallbackMethod = "marvelApiFailedResponse")
+    @Retry(name = "marvelApi", fallbackMethod = "marvelApiFailedResponse")
+    @RateLimiter(name = "default")
     public JSONObject getMarvelResourceByUri(String uri) {
 
         RestTemplate restTemplate = new RestTemplate();
