@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import io.github.resilience4j.retry.annotation.Retry;
 
 @Component
 public class MarvelMappingServiceImp implements MarvelMappingService{
@@ -15,6 +16,7 @@ public class MarvelMappingServiceImp implements MarvelMappingService{
     private static final Logger log = LoggerFactory.getLogger(MarvelMappingServiceImp.class);
 
     @Override
+    @Retry(name = "marvel-api", fallbackMethod = "marvelApiFailedResponse")
     public JSONObject getMarvelResourceByUri(String uri) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -29,6 +31,11 @@ public class MarvelMappingServiceImp implements MarvelMappingService{
 				return null;
 			}
         }
+        return null;
+    }
+
+    public JSONObject marvelApiFailedResponse(String uri, Throwable throwable) {
+        log.error("FAILED TO CALL MARVEL API {}", throwable.getMessage());
         return null;
     }
 
