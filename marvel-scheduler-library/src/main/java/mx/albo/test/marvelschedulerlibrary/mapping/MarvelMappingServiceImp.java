@@ -6,11 +6,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import io.github.resilience4j.retry.annotation.Retry;
 
-@Component
+@Service
 public class MarvelMappingServiceImp implements MarvelMappingService{
 
     private static final Logger log = LoggerFactory.getLogger(MarvelMappingServiceImp.class);
